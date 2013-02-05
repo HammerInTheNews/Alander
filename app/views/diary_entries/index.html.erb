@@ -1,0 +1,17 @@
+<h1>Title</h1>
+<p>The total # of happy entries <%= @happy.count %></p>
+
+<% @diary_entries.each do |d| %>
+  <% if d.happy? %>
+    <div style='color: green'><%= d.title %></div>
+  <% else %>
+    <div> <%= d.title %></div>
+  <p><%= d.description %></p>
+  <% end %>
+<% end %>
+
+
+<% @happy.each do |d| %>
+  <p><%= d.title %></p>
+  <p><%= d.description %></p>
+<% end %>

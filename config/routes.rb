@@ -1,4 +1,7 @@
 Alander::Application.routes.draw do
+
+  match 'diary_entries' => 'diary_entries#index' #need a string in match in routes.rb, not a symbol
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
