@@ -1,17 +1,32 @@
-<h1>Title</h1>
+<h1>Home of the Alander</h1>
+<p>The total # of entries are <%= @diary_entries.count %></p>
 <p>The total # of happy entries <%= @happy.count %></p>
+<table class="table table-striped">
+  <tr>
+    <th>Diary Entry</th>
+    <th>Description</th>
+    <th>Mood</th>
+    <th>When</th>
+    <th>Show</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
 
-<% @diary_entries.each do |d| %>
-  <% if d.happy? %>
-    <div style='color: green'><%= d.title %></div>
-  <% else %>
-    <div> <%= d.title %></div>
-  <p><%= d.description %></p>
-  <% end %>
+<% @diary_entries.each do |diary_entry| %>
+  <tr>
+    <td><%= diary_entry.id %></td>
+    <td><%= diary_entry.description %></td>
+    <td><%= diary_entry.mood %></td>
+    <td><%= distance_of_time_in_words_to_now(diary_entry.created_at) %> ago</td>
+    <td><%= link_to 'Show', diary_entry, :class => 'btn btn-info' %></td>
+    <td><%= link_to 'Edit', edit_diary_entry_path(diary_entry), :class => 'btn btn-info' %></td>
+    <td><%= link_to 'Destroy', diary_entry, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+  </tr>  
 <% end %>
 
 
-<% @happy.each do |d| %>
-  <p><%= d.title %></p>
-  <p><%= d.description %></p>
-<% end %>
+<%= link_to 'New Diary Entry', new_diary_entry_path, :class => 'btn btn-info' %>
+
+
+
+

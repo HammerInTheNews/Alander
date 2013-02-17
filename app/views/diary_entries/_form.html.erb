@@ -1,0 +1,23 @@
+<div class="field">
+<%= form_for(@diary_entry) do |f| %>
+  
+  <% if @diary_entry.errors.any? %>
+    <h2>Something is messed up here!</h2>
+    <% @diary_entry.errors.full_messages.each do |error| %>
+      <p style="color:red"><%=error %></p>
+    <% end %>
+  <% end %>
+
+  <%= f.label :title %><br />
+  <%= f.text_field :title %><br />
+
+  <%= f.label :description %><br />
+  <%= f.text_area :description %><br />
+
+  <%= f.label :mood %><br />
+  <%= f.select :mood, options_for_select(["Select One", "Happy", "Coy", "Bashful", "Spritely", "Other"]) %>
+  <%= f.submit %>
+
+
+<% end %>
+</div>
