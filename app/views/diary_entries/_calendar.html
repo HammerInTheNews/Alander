@@ -1,0 +1,29 @@
+<h2><%= @day.strftime("%B %Y") %></h2>
+<table class="table table-striped">
+  <tr>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Humpday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+  </tr>
+
+  <% (@day.beginning_of_month.beginning_of_week..@day.end_of_month.end_of_week).each do |d| %>
+    <% if d.monday? %>
+      <tr>
+      </tr>
+    <% end %>
+    <td><%= link_to d.day, diary_entries_path(day: d) %>
+    
+      <% if @checkmark.include?(d) %>
+        &#x2713;
+      <% end %>
+    </td>
+  <% end %>  
+</table>
+
+
+<td><%= link_to 'Previous Month', diary_entries_path(day: @day -  1.month)%></td>
+<td><%= link_to 'Next Month', diary_entries_path(day: @day +  1.month)%></td>

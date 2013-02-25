@@ -5,25 +5,16 @@ class DiaryEntry < ActiveRecord::Base
   validates :title,  presence: true, uniqueness: true
   validates :description,  presence: true
   validates :mood, :inclusion => %w(Happy Coy Bashful Spritely Other) #%w turns things into an array of words
-  validate :must_be_monday_or_thursday_and_happy #for custom use validate (singular )
+ # validate :must_be_monday_or_thursday_and_happy #for custom use validate (singular )
 
-    def must_be_monday_or_thursday_and_happy
-      if !((Time.now.monday?||Time.now.thursday?) and mood == "Happy")
-        errors[:mood] << "Must be happy."
-      end
+ #   def must_be_monday_or_thursday_and_happy
+ #     if !((Time.now.monday?||Time.now.thursday?) and mood == "Happy")
+ #       errors[:mood] << "Must be happy."
+   #   end
 
-    end
+   #end
 
-	def happy? #Looks through one specific 'page' or diary entry - this is an instances method
-      mood == "happy" || mood == "joyful"
-
-    end
-
-    def color
-    	mood == "happy"
-    end
-
-    def joyful? #Looks through one specific 'page' or diary entry - this is an instances method
+	  def joyful? #Looks through one specific 'page' or diary entry - this is an instances method
       mood == "joyful"
     end
 
@@ -32,6 +23,6 @@ class DiaryEntry < ActiveRecord::Base
     end
 
        def self.happy
-       	where(mood: ['happy', 'joyful', 'silly'])
+       	where(mood: ['Happy', 'joyful', 'silly'])
        end
 end

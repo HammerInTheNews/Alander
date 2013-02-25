@@ -1,6 +1,7 @@
+<%= render "calendar" %>
+
 <h1>Home of the Alander</h1>
 <p>The total # of entries are <%= @diary_entries.count %></p>
-<p>The total # of happy entries <%= @happy.count %></p>
 <table class="table table-striped">
   <tr>
     <th>Diary Entry</th>
@@ -14,6 +15,7 @@
 
 <% @diary_entries.each do |diary_entry| %>
   <tr>
+
     <td><%= diary_entry.id %></td>
     <td><%= diary_entry.description %></td>
     <td><%= diary_entry.mood %></td>
@@ -24,7 +26,8 @@
   </tr>  
 <% end %>
 
-
+<td><%= link_to 'Previous', diary_entries_path(date: @day - 1.day)%></td>
+<td><%= link_to 'Next', diary_entries_path(date: @day + 1.day)%></td>
 <%= link_to 'New Diary Entry', new_diary_entry_path, :class => 'btn btn-info' %>
 
 
